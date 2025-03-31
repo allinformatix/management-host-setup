@@ -10,7 +10,6 @@ REQUIRED_TOOLS=(
   kubectx
   kubens
   k9s
-  dsadm
   jq
   git
   ansible
