@@ -9,9 +9,7 @@ Dieses Repository enthält ein plattformübergreifendes Setup-Skript zur Vorbere
 
 ## Ausführbar machen
 ```bash
-chmod +x scripts/*.sh
-chmod +x utils/*.sh
-chmod +x *.sh
+chmod +x scripts/*.sh && chmod +x utils/*.sh && chmod +x *.sh
 ```
 
 ## Prüfung nach Installation
