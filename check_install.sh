@@ -19,6 +19,7 @@ REQUIRED_TOOLS=(
   docker
   skaffold
   brew
+  build-essential
 )
 
 log "🔍 Überprüfe installierte Tools..."
