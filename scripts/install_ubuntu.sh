@@ -10,7 +10,7 @@ log "🛠 Installiere Basis-Tools..."
 sudo apt install -y \
   curl wget gnupg2 lsb-release apt-transport-https \
   ca-certificates software-properties-common \
-  git unzip jq python3 python3-pip bash-completion net-tools
+  git unzip jq python3 python3-pip bash-completion net-tools build-essential
 
 if ! command -v docker >/dev/null 2>&1; then
   log "🐳 Installiere Docker von get.docker.com..."
