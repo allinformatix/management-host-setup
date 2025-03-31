@@ -12,11 +12,28 @@ sudo apt install -y \
   ca-certificates software-properties-common \
   git unzip jq python3 python3-pip bash-completion net-tools
 
-log "🐳 Installiere Docker von get.docker.com..."
-curl -fsSL https://get.docker.com | sudo bash
+if ! command -v docker >/dev/null 2>&1; then
+  log "🐳 Installiere Docker von get.docker.com..."
+  curl -fsSL https://get.docker.com | sudo bash
+else
+  log "✅ Docker ist bereits installiert."
+fi
 
-# Homebrew (Linuxbrew)
-install_if_missing brew "/bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" && echo 'eval \"\$\(/home/linuxbrew/.linuxbrew/bin/brew shellenv\)\"' >> ~/.bashrc && eval \"\$\(/home/linuxbrew/.linuxbrew/bin/brew shellenv\)\""
+log "📦 Installiere Homebrew (falls benötigt)..."
+if ! command -v brew >/dev/null 2>&1; then
+  NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  BREW_PATH="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  echo "eval \"$BREW_PATH\"" >> ~/.bashrc
+  eval "$BREW_PATH"
+  log "✅ brew wurde installiert."
+else
+  log "✅ brew ist bereits vorhanden."
+fi
+
+# Aktuelle Versionen ermitteln
+KUBECTL_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+KUBELOGIN_VERSION=$(curl -s https://api.github.com/repos/int128/kubelogin/releases/latest | jq -r .tag_name)
+K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r .tag_name)
 
 install_if_missing kubectl "curl -LO https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/"
 install_if_missing helm "curl -fsSL ${HELM_INSTALL_SCRIPT} | bash"
