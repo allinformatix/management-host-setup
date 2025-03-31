@@ -10,7 +10,10 @@ log "🛠 Installiere Basis-Tools..."
 sudo apt install -y \
   curl wget gnupg2 lsb-release apt-transport-https \
   ca-certificates software-properties-common \
-  git unzip jq python3 python3-pip bash-completion net-tools docker.io
+  git unzip jq python3 python3-pip bash-completion net-tools
+
+log "🐳 Installiere Docker von get.docker.com..."
+curl -fsSL https://get.docker.com | sudo bash
 
 # Homebrew (Linuxbrew)
 install_if_missing brew "/bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" && echo 'eval \"\$\(/home/linuxbrew/.linuxbrew/bin/brew shellenv\)\"' >> ~/.bashrc && eval \"\$\(/home/linuxbrew/.linuxbrew/bin/brew shellenv\)\""
@@ -24,7 +27,6 @@ install_if_missing k9s "curl -Lo k9s.tar.gz https://github.com/derailed/k9s/rele
 install_if_missing kustomize "brew install kustomize"
 install_if_missing hcloud "brew install hcloud"
 install_if_missing skaffold "brew install skaffold"
-install_if_missing dsadm "echo 'Manuelle Installation von dsadm erforderlich oder Tool nicht mehr benötigt.'"
 install_if_missing ansible "sudo apt install -y ansible"
 
 log "✅ Ubuntu Setup abgeschlossen."

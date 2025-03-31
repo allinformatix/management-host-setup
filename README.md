@@ -7,12 +7,19 @@ Dieses Repository enthält ein plattformübergreifendes Setup-Skript zur Vorbere
 - CentOS / RHEL
 - macOS (Apple Silicon & Intel)
 
-## Nutzung
+## Ausführbar machen
 ```bash
-bash install.sh
+chmod +x scripts/*.sh
+chmod +x utils/*.sh
+chmod +x *.sh
 ```
 
 ## Prüfung nach Installation
 ```bash
 bash check_install.sh
+```
+
+## Nutzung
+```bash
+bash install.sh
 ```

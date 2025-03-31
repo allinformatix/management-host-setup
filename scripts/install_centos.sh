@@ -22,6 +22,5 @@ install_if_missing k9s "curl -Lo k9s.tar.gz https://github.com/derailed/k9s/rele
 install_if_missing kustomize "brew install kustomize"
 install_if_missing hcloud "brew install hcloud"
 install_if_missing skaffold "brew install skaffold"
-install_if_missing dsadm "echo 'Manuelle Installation von dsadm erforderlich oder Tool nicht mehr benötigt.'"
 
 log "✅ CentOS Setup abgeschlossen."
